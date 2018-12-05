@@ -11,12 +11,33 @@
 <body>
 	<div id="root"></div>
 	<script type="text/babel">
+	
+	(() => {
 
-	const name = 'sato';
+		function Counter(props){
 
-	(()=> {
+			function sayHoge(e, color){
+				e.preventDefault();
+				alert(color);
+			}
+
+			return (
+				<li className='box' style={{backgroundColor:props.color}}>
+					<a href="#" onClick={(e) => sayHoge(e, props.color)}>
+					Click Here!
+					</a>
+				</li>
+				);
+		}
+
 		ReactDOM.render(
-			<div className="box"></div>,
+			<div className="container">
+				<ul>
+					<Counter color="tomato"/>
+					<Counter color="blue"/>
+					<Counter color="red"/>
+				</ul>
+			</div>,
 			document.getElementById('root')
 		);
 	})();
