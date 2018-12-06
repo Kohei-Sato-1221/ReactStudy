@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>React Practice</title>
-	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/mystyle.css">
 	<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
@@ -11,19 +11,41 @@
 <body>
 	<div id="root"></div>
 	<script type="text/babel">
-	
+
 	// 1.Reactにてrootをレンダーする
 	// 2.onClickイベントでalert
 	// 3.functionでCounterのCoponentを作成 →　color属性を付与して三種類のCounterを作成
 	// 4.CounterにonClickのイベントで、alertでhogehogeを言う
-	// 5.li内にaタグを入れて、onClickで自身のカラーをalert
-
+	// 5.li内にaタグを入れて、onClickで自身のカラーをalert【Lesson9終了】
+	
 	(() => {
 
-	ReactDOM.render(
-		<p>Hello World!</p>,
-		document.getElementById('root')
-	);
+		function Counter(props){
+
+			function sayHoge(e, color){
+				e.preventDefault();
+				alert(color);
+			}
+
+			return (
+				<li className='box' style={{backgroundColor:props.color}}>
+					<a href="#" onClick={(e) => sayHoge(e, props.color)}>
+					Click Here!
+					</a>
+				</li>
+				);
+		}
+
+		ReactDOM.render(
+			<div className="container">
+				<ul>
+					<Counter color="tomato"/>
+					<Counter color="blue"/>
+					<Counter color="red"/>
+				</ul>
+			</div>,
+			document.getElementById('root')
+		);
 	})();
 	</script>
 </body>

@@ -12,35 +12,39 @@
 	<div id="root"></div>
 	<script type="text/babel">
 	
-	(() => {
+	// 1.Reactにてrootをレンダーする
+	// 2.onClickイベントでalert
+	// 3.functionでCounterのCoponentを作成 →　color属性を付与して三種類のCounterを作成
+	// 4.CounterにonClickのイベントで、alertでhogehogeを言う
+	// 5.li内にaタグを入れて、onClickで自身のカラーをalert
 
-		function Counter(props){
+	function Counter(props){
 
-			function sayHoge(e, color){
-				e.preventDefault();
-				alert(color);
-			}
-
-			return (
-				<li className='box' style={{backgroundColor:props.color}}>
-					<a href="#" onClick={(e) => sayHoge(e, props.color)}>
-					Click Here!
-					</a>
-				</li>
-				);
+		function sayHogeHoge(e, color){
+			e.preventDefault();
+			alert('Color is ' + color);
 		}
 
+		return(
+			<li className='box' style={{backgroundColor:props.color}}>
+				<a href='#' onClick={(e)=>sayHogeHoge(e, props.color)}>hogehoge</a>
+			</li>
+			);
+	}
+
+	(()=> {
 		ReactDOM.render(
-			<div className="container">
+			<div className='container'>
 				<ul>
-					<Counter color="tomato"/>
-					<Counter color="blue"/>
-					<Counter color="red"/>
+					<Counter color='red'/>
+					<Counter color='skyblue'/>
+					<Counter color='green'/>
 				</ul>
 			</div>,
 			document.getElementById('root')
 		);
 	})();
+
 	</script>
 </body>
 </html>
